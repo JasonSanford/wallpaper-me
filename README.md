@@ -6,13 +6,9 @@ A web app for grabbing map images and stitching them together to create wallpape
 
 ![](screenshots/web-camo.png) ![](screenshots/web-pumpkin-spice.png)
 
-Search for places.
+Search for places, then select your map.
 
-![](screenshots/search-places.jpg)
-
-Select your map.
-
-![](screenshots/select-map.jpg)
+![](screenshots/search-places.jpg) ![](screenshots/select-map.jpg)
 
 Then tap "Get Wallpaper" to open a new page where you can save your image to your device, then set as your wallpaper, lock screen, home screen, etc.
 
