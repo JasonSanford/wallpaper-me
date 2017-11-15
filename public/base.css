@@ -1,0 +1,133 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+#root {
+  height: 100%;
+}
+
+.Button {
+  padding: 4px 10px;
+  background-color: #e0e0e0;
+  color: #222;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+
+.Button.Save {
+  background-color: #8bb98b;
+}
+
+.Modal {
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.ModalBackdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: auto;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.ModalDialog {
+  position: absolute;
+  width: 600px;
+  max-width: 80%;
+  height: 450px;
+  max-height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(229, 229, 229);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.498039) 0px 5px 15px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.ModalDialog .Bottom {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.ModalDialog .Bottom .Button {
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+
+.ModalDialog .Button i {
+  margin-right: 8px;
+}

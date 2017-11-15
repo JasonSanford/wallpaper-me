@@ -1,0 +1,56 @@
+{
+  "name": "wallpaper-me",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "abaculus": "^2.0.3",
+    "classnames": "^2.2.5",
+    "debounce": "^1.1.0",
+    "express": "^4.14.0",
+    "leaflet": "^1.0.1",
+    "mapbox": "^1.0.0-beta9",
+    "prop-types": "^15.6.0",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "react-leaflet": "^1.0.0-rc.3",
+    "react-overlays": "^0.6.10",
+    "tilelive": "^5.12.2",
+    "tilelive-http": "^0.13.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-css-in-js": "^1.5.1",
+    "babel-plugin-transform-proto-to-assign": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.23.0",
+    "eslint": "^4.10.0",
+    "eslint-config-fulcrum": "fulcrumapp/eslint-config-fulcrum",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-react": "^7.4.0",
+    "nodemon": "^1.9.2",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1"
+  },
+  "scripts": {
+    "start": "npm run watch & npm run dev-server",
+    "dev-server": "nodemon -w src/server.js src/map.js --exec \"babel-node src/server.js --presets es2015,stage-0\"",
+    "build-server": "babel src/server.js -o dist/server/index.js && babel src/map.js -o dist/server/map.js",
+    "start-server": "node dist/server",
+    "build": "node_modules/.bin/webpack --config webpack.config.production.js --progress --colors",
+    "watch": "node_modules/.bin/webpack --config webpack.config.js --progress --colors --watch",
+    "lint": "node_modules/.bin/eslint 'src/**/*.js' 'src/**/*.jsx'"
+  },
+  "eslintConfig": {
+    "extends": "fulcrum"
+  },
+  "engines": {
+    "node": "6.12.0"
+  }
+}

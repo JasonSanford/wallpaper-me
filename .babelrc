@@ -1,0 +1,14 @@
+{
+  "presets": ["es2015", "react", "stage-0"],
+  "plugins": [
+    ["css-in-js", {
+      "vendorPrefixes": true,
+      "bundleFile": "dist/build.css",
+      "minify": false,
+      "compressClassNames": false,
+      "mediaMap": {
+        "phone": "media only screen and (max-width: 800px)"
+      }
+    }]
+  ]
+}
