@@ -10,36 +10,6 @@ const app = express();
 
 const port = (process.env.PORT || 3001);
 
-app.listen(port, () => console.log(`Listening on port ${port}.`));
-
-app.use('/', express.static('dist'));
-app.use('/', express.static('public'));
-
-app.get('/image', (req, res) => {
-  buildAbaculusOptionsAndMap(req.query, (error, abaculusOptions, map) => {
-    if (error) {
-      res.status(400).send(error);
-    } else {
-      tilelive.load(map.tileLayerUrlLarge, (error, source) => {
-        if (error) throw error;
-
-        Object.assign(abaculusOptions, {
-          scale: 1,
-          tileSize: 1024,
-          format: 'png',
-          getTile: source.getTile.bind(source)
-        });
-
-        abaculus(abaculusOptions, (error, image, headers) => {
-          if (error) throw error;
-          res.set('Content-Type', 'image/png');
-          res.send(image);
-        });
-      });
-    }
-  });
-});
-
 function buildAbaculusOptionsAndMap(query, callback) {
   const mapErrorText = 'A "map" parameter must be passed and be a valid map id (integer).';
   const zoomErrorText = 'A "zoom" parameter must be passed and be a whole number between 1 and 22.';
@@ -50,7 +20,7 @@ function buildAbaculusOptionsAndMap(query, callback) {
 
   const errors = [];
 
-  let map;
+  let map = null;
   const options = { center: {} };
 
   let mapId = query.map;
@@ -58,7 +28,7 @@ function buildAbaculusOptionsAndMap(query, callback) {
     errors.push(mapErrorText);
   } else {
     try {
-      mapId = parseInt(mapId);
+      mapId = parseInt(mapId, 10);
     } catch (e) {
       errors.push(mapErrorText);
     }
@@ -75,7 +45,7 @@ function buildAbaculusOptionsAndMap(query, callback) {
     errors.push(zoomErrorText);
   } else {
     try {
-      zoom = parseInt(zoom);
+      zoom = parseInt(zoom, 10);
       options.zoom = zoom - 1;
     } catch (e) {
       errors.push(zoomErrorText);
@@ -87,7 +57,7 @@ function buildAbaculusOptionsAndMap(query, callback) {
     errors.push(widthErrorText);
   } else {
     try {
-      width = parseInt(width);
+      width = parseInt(width, 10);
       options.center.w = width;
     } catch (e) {
       errors.push(widthErrorText);
@@ -99,7 +69,7 @@ function buildAbaculusOptionsAndMap(query, callback) {
     errors.push(heightErrorText);
   } else {
     try {
-      height = parseInt(height);
+      height = parseInt(height, 10);
       options.center.h = height;
     } catch (e) {
       errors.push(heightErrorText);
@@ -136,3 +106,37 @@ function buildAbaculusOptionsAndMap(query, callback) {
     callback(errors.join(' '));
   }
 }
+
+app.listen(port, () => console.log(`Listening on port ${port}.`));
+
+app.use('/', express.static('dist'));
+app.use('/', express.static('public'));
+
+app.get('/image', (req, res) => {
+  buildAbaculusOptionsAndMap(req.query, (error, abaculusOptions, map) => {
+    if (error) {
+      res.status(400).send(error);
+    } else {
+      tilelive.load(map.tileLayerUrlLarge, (err, source) => {
+        if (err) {
+          throw err;
+        }
+
+        Object.assign(abaculusOptions, {
+          scale: 1,
+          tileSize: 1024,
+          format: 'png',
+          getTile: source.getTile.bind(source)
+        });
+
+        abaculus(abaculusOptions, (er, image, headers) => {
+          if (er) {
+            throw er;
+          }
+          res.set('Content-Type', 'image/png');
+          res.send(image);
+        });
+      });
+    }
+  });
+});
