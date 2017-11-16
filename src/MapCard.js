@@ -19,13 +19,6 @@ export default class MapCard extends Component {
     lastInRow: false
   }
 
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-    this.onLayerSelected = props.onLayerSelected.bind(this);
-  }
-
   render() {
     const {styles} = MapCard;
 
@@ -54,8 +47,8 @@ export default class MapCard extends Component {
     );
   }
 
-  handleClick() {
-    this.onLayerSelected(this.props.map.id);
+  handleClick = () => {
+    this.props.onLayerSelected(this.props.map.id);
   }
 }
 

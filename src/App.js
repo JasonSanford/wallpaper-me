@@ -13,9 +13,6 @@ export default class App extends Component {
 
     const initialMap = Map.default();
 
-    this.onMoveend = this.onMoveend.bind(this);
-    this.onZoomend = this.onZoomend.bind(this);
-
     let width = 500;
     let height = 500;
     let sizeDetected = false;
