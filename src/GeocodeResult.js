@@ -6,6 +6,7 @@ export default class GeocodeResult extends Component {
   static propTypes = {
     feature: PropTypes.object.isRequired,
     last: PropTypes.bool.isRequired,
+    highlighted: PropTypes.bool.isRequired,
     onGeocodeSelected: PropTypes.func.isRequired
   }
 
@@ -14,6 +15,7 @@ export default class GeocodeResult extends Component {
 
     const geocodeResultStyles = {};
     geocodeResultStyles[`${styles.last}`] = this.props.last;
+    geocodeResultStyles[`${styles.highlighted}`] = this.props.highlighted;
 
     return (
       <div
@@ -42,6 +44,10 @@ const styles = cssInJS({
 
   last: {
     marginBottom: 0
+  },
+
+  highlighted: {
+    background: '#e9e9e9'
   }
 });
 

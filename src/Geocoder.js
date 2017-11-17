@@ -7,6 +7,10 @@ import { Modal } from 'react-overlays';
 
 import GeocodeResult from './GeocodeResult';
 
+const KEY_UP = 38;
+const KEY_DOWN = 40;
+const KEY_ENTER = 13;
+
 export default class Geocoder extends Component {
   static propTypes = {
     show: PropTypes.bool,
@@ -23,7 +27,8 @@ export default class Geocoder extends Component {
 
     this.state = {
       searchValue: null,
-      geocodeResults: null
+      geocodeResults: null,
+      highlightedResult: null
     };
   }
 
@@ -43,7 +48,8 @@ export default class Geocoder extends Component {
               className={styles.textInput}
               type="text"
               placeholder="city, address, etc."
-              onChange={this.handleTextInputChange} />
+              onChange={this.handleTextInputChange}
+              onKeyDown={this.handleKeyDown} />
           </div>
           {this.renderGeocodeResults()}
         </div>
@@ -53,21 +59,24 @@ export default class Geocoder extends Component {
 
   renderGeocodeResults() {
     const {styles} = Geocoder;
+    const {geocodeResults, highlightedResult} = this.state;
 
-    if (!this.state.geocodeResults) {
+    if (!geocodeResults) {
       return null;
     }
 
     return (
       <div className={styles.geocodeResults}>
-        {this.state.geocodeResults.map((geocodeResult, i) => {
-          const last = (i === (this.state.geocodeResults.length - 1));
+        {geocodeResults.map((geocodeResult, i) => {
+          const last = (i === (geocodeResults.length - 1));
+          const highlighted = (i === highlightedResult);
 
           return (
             <GeocodeResult
               key={geocodeResult.id}
               feature={geocodeResult}
               last={last}
+              highlighted={highlighted}
               onGeocodeSelected={this.handleGeocodeSelected} />
           );
         })}
@@ -76,12 +85,72 @@ export default class Geocoder extends Component {
   }
 
   handleTextInputChange = (event) => {
-    this.setState({
-      searchValue: event.target.value
-    }, this.geocode);
+    const value = event.target.value.length > 0
+      ? event.target.value
+      : null;
+
+    const state = {searchValue: value};
+
+    if (!value) {
+      state.geocodeResults = null;
+      state.highlightedResult = null;
+    }
+
+    this.setState(state, this.geocode);
+  }
+
+  handleKeyDown = (event) => {
+    const isUp = event.keyCode === KEY_UP;
+    const isDown = event.keyCode === KEY_DOWN;
+    const isEnter = event.keyCode === KEY_ENTER;
+    let {highlightedResult} = this.state;
+    const {geocodeResults} = this.state;
+
+    if (!(isUp || isDown || isEnter)) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (isEnter) {
+      if (highlightedResult !== null) {
+        this.handleGeocodeSelected(geocodeResults[highlightedResult]);
+      }
+      return;
+    }
+
+    if (highlightedResult === null) {
+      if (isUp) {
+        highlightedResult = geocodeResults.length - 1;
+      } else {
+        highlightedResult = 0;
+      }
+    } else {
+      const firstResultHighlighted = highlightedResult === 0;
+      const lastResultHighlighted = (highlightedResult === geocodeResults.length - 1);
+
+      if (isUp) {
+        if (firstResultHighlighted) {
+          highlightedResult = geocodeResults.length - 1;
+        } else {
+          highlightedResult--;
+        }
+      } else if (lastResultHighlighted) {
+        highlightedResult = 0;
+      } else {
+        highlightedResult++;
+      }
+    }
+
+    this.setState({highlightedResult});
   }
 
   geocode() {
+    if (!this.state.searchValue) {
+      return;
+    }
+
     this.mapboxClient.geocodeForward(this.state.searchValue, (error, data, res) => {
       if (error) {
         return;
@@ -98,7 +167,7 @@ export default class Geocoder extends Component {
   }
 
   handleGeocodeSelected = (feature) => {
-    this.setState({searchValue: null, geocodeResults: null});
+    this.setState({searchValue: null, geocodeResults: null, highlightedResult: null});
     this.props.handleGeocodeSelected(feature);
   }
 }
