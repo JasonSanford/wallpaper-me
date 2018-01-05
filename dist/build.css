@@ -2,6 +2,23 @@
   position: relative;
   height: 100%;
 }
+.src_LayerPicker_js-styles-modal {
+  height: unset;
+  padding-bottom: 60px;
+}
+.src_LayerPicker_js-styles-layers {
+  height: 300px;
+  overflow-y: auto;
+}
+.src_LayerPicker_js-styles-bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-top: 0px;
+  padding: 15px;
+  background-color: #fff;
+}
 .src_Header_js-styles-header {
   position: absolute;
   top: 0px;
@@ -29,6 +46,12 @@
 .src_Header_js-styles-mapLayersIcon {
   float: right;
 }
+.src_MapContainer_js-styles-mapContainer {
+  height: 100%;
+}
+.src_MapContainer_js-styles-map {
+  height: 100%;
+}
 .src_Footer_js-styles-footer {
   position: absolute;
   bottom: 12px;
@@ -49,29 +72,6 @@
 }
 .src_Footer_js-styles-icon {
   margin-right: 8px;
-}
-.src_LayerPicker_js-styles-modal {
-  height: unset;
-  padding-bottom: 60px;
-}
-.src_LayerPicker_js-styles-layers {
-  height: 300px;
-  overflow-y: auto;
-}
-.src_LayerPicker_js-styles-bottom {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin-top: 0px;
-  padding: 15px;
-  background-color: #fff;
-}
-.src_MapContainer_js-styles-mapContainer {
-  height: 100%;
-}
-.src_MapContainer_js-styles-map {
-  height: 100%;
 }
 .src_geocoder_js-styles-geocoder {
   width: 400px;

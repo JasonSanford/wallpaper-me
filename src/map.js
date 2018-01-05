@@ -36,6 +36,16 @@ const mapDefs = [
     name: 'Dark',
     mapboxId: 'jcsanford/civmqc7m100262imxdnpflcio',
     token: myTokenDontStealPlz
+  }, {
+    id: 8,
+    name: 'Pepperoni',
+    mapboxId: 'jcsanford/cjc2byrve12jy2smna1ssel35',
+    token: myTokenDontStealPlz
+  }, {
+    id: 9,
+    name: 'Black Gum',
+    mapboxId: 'jcsanford/cjc2c2skxiv4g2snpe4eat6w9',
+    token: myTokenDontStealPlz
   }
 ];
 
