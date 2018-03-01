@@ -55,6 +55,11 @@ var mapDefs = [{
   name: 'Black Gum',
   mapboxId: 'jcsanford/cjc2c2skxiv4g2snpe4eat6w9',
   token: myTokenDontStealPlz
+}, {
+  id: 10,
+  name: 'Satellite',
+  mapboxId: 'jcsanford/cje7wz95k6o182rml2rw1mjw7',
+  token: myTokenDontStealPlz
 }];
 
 var Map = function () {
