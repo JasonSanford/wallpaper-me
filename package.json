@@ -44,6 +44,7 @@
     "build-server": "babel src/server.js -o dist/server/index.js && babel src/map.js -o dist/server/map.js",
     "start-server": "node dist/server",
     "build": "node_modules/.bin/webpack --config webpack.config.production.js --progress --colors",
+    "heroku-postbuild": "echo Skip build on Heroku",
     "watch": "node_modules/.bin/webpack --config webpack.config.js --progress --colors --watch",
     "lint": "node_modules/.bin/eslint 'src/**/*.js' 'src/**/*.jsx'"
   },
