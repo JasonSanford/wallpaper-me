@@ -1,6 +1,6 @@
 import express from 'express';
-import abaculus from 'abaculus';
-import tilelive from 'tilelive';
+import abaculus from '@mapbox/abaculus';
+import tilelive from '@mapbox/tilelive';
 
 require('tilelive-http')(tilelive);
 
@@ -126,6 +126,7 @@ app.get('/image', (req, res) => {
           scale: 1,
           tileSize: 1024,
           format: 'png',
+          quality: 256,
           getTile: source.getTile.bind(source)
         });
 

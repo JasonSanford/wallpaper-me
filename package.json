@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "abaculus": "^2.0.3",
+    "@mapbox/abaculus": "^3.1.0",
+    "@mapbox/tilelive": "^6.1.0",
     "classnames": "^2.2.5",
     "debounce": "^1.1.0",
     "express": "^4.14.0",
@@ -14,8 +15,7 @@
     "react-dom": "^15.4.0",
     "react-leaflet": "^1.0.0-rc.3",
     "react-overlays": "^0.6.10",
-    "tilelive": "^5.12.2",
-    "tilelive-http": "^0.13.0"
+    "tilelive-http": "^0.14.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -51,6 +51,6 @@
     "extends": "fulcrum"
   },
   "engines": {
-    "node": "6.12.0"
+    "node": "12.18.1"
   }
 }
