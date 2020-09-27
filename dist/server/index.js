@@ -4,11 +4,11 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _abaculus = require('abaculus');
+var _abaculus = require('@mapbox/abaculus');
 
 var _abaculus2 = _interopRequireDefault(_abaculus);
 
-var _tilelive = require('tilelive');
+var _tilelive = require('@mapbox/tilelive');
 
 var _tilelive2 = _interopRequireDefault(_tilelive);
 
@@ -142,6 +142,7 @@ app.get('/image', function (req, res) {
           scale: 1,
           tileSize: 1024,
           format: 'png',
+          quality: 256,
           getTile: source.getTile.bind(source)
         });
 
