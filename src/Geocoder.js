@@ -21,7 +21,7 @@ export default class Geocoder extends Component {
   constructor(props) {
     super(props);
 
-    this.mapboxClient = new MapboxClient('pk.eyJ1IjoiamNzYW5mb3JkIiwiYSI6InRJMHZPZFUifQ.F4DMGoNgU3r2AWLY0Eni-w');
+    this.mapboxClient = new MapboxClient('pk.eyJ1IjoiamNzYW5mb3JkIiwiYSI6ImNrZG1kdnU5NzE3bG4yenBkbzU5bDQ2NXMifQ.IMquilPKSANQDaSzf3fjcg');
 
     this.geocode = debounce(this.geocode, 350);
 
