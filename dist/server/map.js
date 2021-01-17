@@ -60,6 +60,11 @@ var mapDefs = [{
   name: 'Satellite',
   mapboxId: 'jcsanford/cje7wz95k6o182rml2rw1mjw7',
   token: myTokenDontStealPlz
+}, {
+  id: 11,
+  name: 'Topo',
+  mapboxId: 'jcsanford/ckk160ban26ik18m8d071oltt',
+  token: myTokenDontStealPlz
 }];
 
 var Map = function () {
