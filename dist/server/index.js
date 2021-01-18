@@ -146,7 +146,7 @@ app.get('/image', function (req, res) {
           getTile: source.getTile.bind(source)
         });
 
-        (0, _abaculus2.default)(abaculusOptions, function (er, image, headers) {
+        (0, _abaculus2.default)(abaculusOptions, function (er, image) {
           if (er) {
             throw er;
           }

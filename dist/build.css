@@ -2,6 +2,27 @@
   position: relative;
   height: 100%;
 }
+.src_Footer_js-styles-footer {
+  position: absolute;
+  bottom: 12px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  padding: 12px;
+  z-index: 1000;
+}
+.src_Footer_js-styles-link {
+  padding: 10px 14px;
+  background-color: #222;
+  color: #e0e0e0;
+}
+.src_Footer_js-styles-link:visited {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+.src_Footer_js-styles-icon {
+  margin-right: 8px;
+}
 .src_Header_js-styles-header {
   position: absolute;
   top: 0px;
@@ -28,27 +49,6 @@
 }
 .src_Header_js-styles-mapLayersIcon {
   float: right;
-}
-.src_Footer_js-styles-footer {
-  position: absolute;
-  bottom: 12px;
-  left: 0px;
-  right: 0px;
-  text-align: center;
-  padding: 12px;
-  z-index: 1000;
-}
-.src_Footer_js-styles-link {
-  padding: 10px 14px;
-  background-color: #222;
-  color: #e0e0e0;
-}
-.src_Footer_js-styles-link:visited {
-  color: #e0e0e0;
-  text-decoration: none;
-}
-.src_Footer_js-styles-icon {
-  margin-right: 8px;
 }
 .src_LayerPicker_js-styles-modal {
   height: unset;
