@@ -62,8 +62,13 @@ var mapDefs = [{
   token: myTokenDontStealPlz
 }, {
   id: 11,
-  name: 'Topo',
+  name: 'Green Topo',
   mapboxId: 'jcsanford/ckk160ban26ik18m8d071oltt',
+  token: myTokenDontStealPlz
+}, {
+  id: 12,
+  name: 'Dark Topo',
+  mapboxId: 'jcsanford/ckkgxerz90ss317o5a5an9dbu',
   token: myTokenDontStealPlz
 }];
 
