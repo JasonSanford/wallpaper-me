@@ -26,6 +26,7 @@ export default class Footer extends Component {
 
     return (
       <div className={styles.footer}>
+        {this.renderLogo()}
         <a
           className={cx('Button', styles.link)}
           target="_blank"
@@ -36,6 +37,28 @@ export default class Footer extends Component {
             aria-hidden="true" />
           Get Wallpaper
         </a>
+      </div>
+    );
+  }
+
+  renderLogo() {
+    const { styles } = Footer;
+    const { mapId } = this.props;
+
+    if (![ 12, 14 ].includes(mapId)) {
+      return null;
+    }
+
+    const logoPath = {
+      12: 'logo-green.png',
+      14: 'logo-dark.png'
+    }[mapId];
+
+    return (
+      <div>
+        <img
+          className={styles.logo}
+          src={logoPath} />
       </div>
     );
   }
@@ -50,6 +73,11 @@ const styles = cssInJS({
     textAlign: 'center',
     padding: 12,
     zIndex: 1000
+  },
+
+  logo: {
+    width: 150,
+    marginBottom: 20
   },
 
   link: {

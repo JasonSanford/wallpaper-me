@@ -1,6 +1,8 @@
 import express from 'express';
 import abaculus from '@mapbox/abaculus';
 import tilelive from '@mapbox/tilelive';
+import mergeImages from 'merge-images';
+import { Canvas, Image } from 'canvas';
 
 require('tilelive-http')(tilelive);
 
@@ -122,6 +124,15 @@ app.get('/image', (req, res) => {
           throw err;
         }
 
+        let logoOverlay = null;
+
+        if ([ 12, 14 ].includes(map.id)) {
+          logoOverlay = {
+            12: 'logo-green.png',
+            14: 'logo-dark.png'
+          }[map.id];
+        }
+
         Object.assign(abaculusOptions, {
           scale: 1,
           tileSize: 1024,
@@ -134,8 +145,35 @@ app.get('/image', (req, res) => {
           if (er) {
             throw er;
           }
-          res.set('Content-Type', 'image/png');
-          res.send(image);
+
+          if (logoOverlay) {
+            const backgroundWidth = abaculusOptions.center.w;
+            const backgroundHeight = abaculusOptions.center.h;
+
+            const logoWidth = 400;
+            const logoHeight = 305;
+
+            const x = (backgroundWidth / 2) - (logoWidth / 2);
+            const y = backgroundHeight - logoHeight - 400;
+
+            const images = [
+              image,
+              { src: logoOverlay, x, y }
+            ];
+            mergeImages(images, {
+              Canvas, Image
+            })
+              .then(mergedBase64 => {
+                const headersStripped = mergedBase64.replace(/^data:image\/png;base64,/, '');
+                const mergedImage = Buffer.from(headersStripped, 'base64');
+
+                res.set('Content-Type', 'image/png');
+                res.send(mergedImage);
+              });
+          } else {
+            res.set('Content-Type', 'image/png');
+            res.send(image);
+          }
         });
       });
     }

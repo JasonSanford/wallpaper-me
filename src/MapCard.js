@@ -39,11 +39,33 @@ export default class MapCard extends Component {
         onClick={this.handleClick}>
         <div
           className={mapImageClassName}
-          style={{ backgroundImage: `url(${imageUrl})` }} />
+          style={{ backgroundImage: `url(${imageUrl})` }}>
+          {this.renderLogo()}
+        </div>
         <span className={styles.mapName}>
           {this.props.map.name}
         </span>
       </div>
+    );
+  }
+
+  renderLogo() {
+    const { map } = this.props;
+    const { styles } = MapCard;
+
+    if (![ 12, 14 ].includes(map.id)) {
+      return null;
+    }
+
+    const logoPath = {
+      12: 'logo-green.png',
+      14: 'logo-dark.png'
+    }[map.id];
+
+    return (
+      <img
+        src={logoPath}
+        className={styles.logo} />
     );
   }
 
@@ -79,7 +101,8 @@ const styles = cssInJS({
     height: 125,
     borderRadius: 3,
     backgroundSize: 'cover',
-    border: '1px solid #b3b3b3'
+    border: '1px solid #b3b3b3',
+    position: 'relative'
   },
 
   mapImageSelected: {
@@ -94,11 +117,25 @@ const styles = cssInJS({
     padding: '4px 0'
   },
 
+  logo: {
+    width: 50,
+    position: 'absolute',
+    bottom: 5,
+    left: 118
+  },
+
   '@media (min-width: 550px)': {
     mapCard: {
       marginRight: 10,
       width: 192,
       display: 'inline-block'
+    },
+
+    logo: {
+      width: 50,
+      position: 'absolute',
+      bottom: 5,
+      left: 65
     },
 
     lastInRow: {

@@ -12,6 +12,12 @@ var _tilelive = require('@mapbox/tilelive');
 
 var _tilelive2 = _interopRequireDefault(_tilelive);
 
+var _mergeImages = require('merge-images');
+
+var _mergeImages2 = _interopRequireDefault(_mergeImages);
+
+var _canvas = require('canvas');
+
 var _map = require('./map');
 
 var _map2 = _interopRequireDefault(_map);
@@ -150,6 +156,7 @@ app.get('/image', function (req, res) {
           if (er) {
             throw er;
           }
+          console.log(image);
           res.set('Content-Type', 'image/png');
           res.send(image);
         });
