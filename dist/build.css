@@ -46,12 +46,6 @@
   padding: 15px;
   background-color: #fff;
 }
-.src_MapContainer_js-styles-mapContainer {
-  height: 100%;
-}
-.src_MapContainer_js-styles-map {
-  height: 100%;
-}
 .src_Footer_js-styles-footer {
   position: absolute;
   bottom: 12px;
@@ -76,6 +70,12 @@
 }
 .src_Footer_js-styles-icon {
   margin-right: 8px;
+}
+.src_MapContainer_js-styles-mapContainer {
+  height: 100%;
+}
+.src_MapContainer_js-styles-map {
+  height: 100%;
 }
 .src_geocoder_js-styles-geocoder {
   width: 400px;
