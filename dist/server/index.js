@@ -144,6 +144,15 @@ app.get('/image', function (req, res) {
           throw err;
         }
 
+        var logoOverlay = null;
+
+        if ([12, 14].includes(map.id)) {
+          logoOverlay = {
+            12: 'logo-green.png',
+            14: 'logo-dark.png'
+          }[map.id];
+        }
+
         Object.assign(abaculusOptions, {
           scale: 1,
           tileSize: 1024,
@@ -156,9 +165,31 @@ app.get('/image', function (req, res) {
           if (er) {
             throw er;
           }
-          console.log(image);
-          res.set('Content-Type', 'image/png');
-          res.send(image);
+
+          if (logoOverlay) {
+            var backgroundWidth = abaculusOptions.center.w;
+            var backgroundHeight = abaculusOptions.center.h;
+
+            var logoWidth = 400;
+            var logoHeight = 305;
+
+            var x = backgroundWidth / 2 - logoWidth / 2;
+            var y = backgroundHeight - logoHeight - 400;
+
+            var images = [image, { src: logoOverlay, x: x, y: y }];
+            (0, _mergeImages2.default)(images, {
+              Canvas: _canvas.Canvas, Image: _canvas.Image
+            }).then(function (mergedBase64) {
+              var headersStripped = mergedBase64.replace(/^data:image\/png;base64,/, '');
+              var mergedImage = Buffer.from(headersStripped, 'base64');
+
+              res.set('Content-Type', 'image/png');
+              res.send(mergedImage);
+            });
+          } else {
+            res.set('Content-Type', 'image/png');
+            res.send(image);
+          }
         });
       });
     }
