@@ -7,7 +7,7 @@
     "@mapbox/tilelive": "^6.1.0",
     "classnames": "^2.2.5",
     "debounce": "^1.1.0",
-    "express": "^4.14.0",
+    "express": "^4.17.3",
     "leaflet": "^1.0.1",
     "mapbox": "^1.0.0-beta9",
     "prop-types": "^15.6.0",
